@@ -159,6 +159,7 @@
             this.button_save.TabIndex = 26;
             this.button_save.Text = "Сохранить";
             this.button_save.UseVisualStyleBackColor = false;
+            this.button_save.Click += new System.EventHandler(this.button_save_Click);
             // 
             // button_edit
             // 
@@ -176,6 +177,7 @@
             this.button_edit.TabIndex = 25;
             this.button_edit.Text = "Изменить";
             this.button_edit.UseVisualStyleBackColor = false;
+            this.button_edit.Click += new System.EventHandler(this.button_edit_Click);
             // 
             // button_delete
             // 
@@ -193,6 +195,7 @@
             this.button_delete.TabIndex = 24;
             this.button_delete.Text = "Удалить";
             this.button_delete.UseVisualStyleBackColor = false;
+            this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
             // 
             // button_newNote
             // 
@@ -210,6 +213,7 @@
             this.button_newNote.TabIndex = 23;
             this.button_newNote.Text = "Новая запись";
             this.button_newNote.UseVisualStyleBackColor = false;
+            this.button_newNote.Click += new System.EventHandler(this.button_newNote_Click);
             // 
             // label2
             // 
@@ -290,7 +294,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Unbounded", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label6.Location = new System.Drawing.Point(39, 169);
+            this.label6.Location = new System.Drawing.Point(15, 169);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(113, 20);
             this.label6.TabIndex = 30;
@@ -302,7 +306,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Unbounded", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label5.Location = new System.Drawing.Point(39, 132);
+            this.label5.Location = new System.Drawing.Point(15, 132);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(116, 20);
             this.label5.TabIndex = 29;
@@ -314,7 +318,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Unbounded", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label4.Location = new System.Drawing.Point(39, 95);
+            this.label4.Location = new System.Drawing.Point(15, 95);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 20);
             this.label4.TabIndex = 28;
@@ -335,71 +339,71 @@
             // textBox_year_of_birth
             // 
             this.textBox_year_of_birth.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox_year_of_birth.Font = new System.Drawing.Font("Unbounded", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_year_of_birth.Font = new System.Drawing.Font("Unbounded", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox_year_of_birth.ForeColor = System.Drawing.Color.SaddleBrown;
             this.textBox_year_of_birth.Location = new System.Drawing.Point(551, 90);
             this.textBox_year_of_birth.Name = "textBox_year_of_birth";
-            this.textBox_year_of_birth.Size = new System.Drawing.Size(164, 31);
+            this.textBox_year_of_birth.Size = new System.Drawing.Size(194, 31);
             this.textBox_year_of_birth.TabIndex = 27;
             // 
             // textBox_adress
             // 
             this.textBox_adress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox_adress.Font = new System.Drawing.Font("Unbounded", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_adress.Font = new System.Drawing.Font("Unbounded", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox_adress.ForeColor = System.Drawing.Color.SaddleBrown;
             this.textBox_adress.Location = new System.Drawing.Point(551, 127);
             this.textBox_adress.Name = "textBox_adress";
-            this.textBox_adress.Size = new System.Drawing.Size(164, 31);
+            this.textBox_adress.Size = new System.Drawing.Size(194, 31);
             this.textBox_adress.TabIndex = 26;
             // 
             // textBox_otchestvo
             // 
             this.textBox_otchestvo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox_otchestvo.Font = new System.Drawing.Font("Unbounded", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_otchestvo.Font = new System.Drawing.Font("Unbounded", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox_otchestvo.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.textBox_otchestvo.Location = new System.Drawing.Point(161, 164);
+            this.textBox_otchestvo.Location = new System.Drawing.Point(137, 164);
             this.textBox_otchestvo.Name = "textBox_otchestvo";
-            this.textBox_otchestvo.Size = new System.Drawing.Size(164, 31);
+            this.textBox_otchestvo.Size = new System.Drawing.Size(194, 31);
             this.textBox_otchestvo.TabIndex = 25;
             // 
             // textBox_phone_number
             // 
             this.textBox_phone_number.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox_phone_number.Font = new System.Drawing.Font("Unbounded", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_phone_number.Font = new System.Drawing.Font("Unbounded", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox_phone_number.ForeColor = System.Drawing.Color.SaddleBrown;
             this.textBox_phone_number.Location = new System.Drawing.Point(551, 164);
             this.textBox_phone_number.Name = "textBox_phone_number";
-            this.textBox_phone_number.Size = new System.Drawing.Size(164, 31);
+            this.textBox_phone_number.Size = new System.Drawing.Size(194, 31);
             this.textBox_phone_number.TabIndex = 24;
             // 
             // textBox_imya
             // 
             this.textBox_imya.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox_imya.Font = new System.Drawing.Font("Unbounded", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_imya.Font = new System.Drawing.Font("Unbounded", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox_imya.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.textBox_imya.Location = new System.Drawing.Point(161, 90);
+            this.textBox_imya.Location = new System.Drawing.Point(137, 90);
             this.textBox_imya.Name = "textBox_imya";
-            this.textBox_imya.Size = new System.Drawing.Size(164, 31);
+            this.textBox_imya.Size = new System.Drawing.Size(194, 31);
             this.textBox_imya.TabIndex = 23;
             // 
             // textBox_familiya
             // 
             this.textBox_familiya.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox_familiya.Font = new System.Drawing.Font("Unbounded", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_familiya.Font = new System.Drawing.Font("Unbounded", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox_familiya.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.textBox_familiya.Location = new System.Drawing.Point(161, 127);
+            this.textBox_familiya.Location = new System.Drawing.Point(137, 127);
             this.textBox_familiya.Name = "textBox_familiya";
-            this.textBox_familiya.Size = new System.Drawing.Size(164, 31);
+            this.textBox_familiya.Size = new System.Drawing.Size(194, 31);
             this.textBox_familiya.TabIndex = 22;
             // 
             // textBox_id
             // 
             this.textBox_id.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox_id.Font = new System.Drawing.Font("Unbounded", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_id.Font = new System.Drawing.Font("Unbounded", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox_id.ForeColor = System.Drawing.Color.SaddleBrown;
             this.textBox_id.Location = new System.Drawing.Point(551, 38);
             this.textBox_id.Name = "textBox_id";
-            this.textBox_id.Size = new System.Drawing.Size(164, 31);
+            this.textBox_id.Size = new System.Drawing.Size(194, 31);
             this.textBox_id.TabIndex = 21;
             // 
             // label1
@@ -433,6 +437,7 @@
             this.textBox_search.Name = "textBox_search";
             this.textBox_search.Size = new System.Drawing.Size(210, 31);
             this.textBox_search.TabIndex = 18;
+            this.textBox_search.TextChanged += new System.EventHandler(this.textBox_search_TextChanged);
             // 
             // pictureBox_search
             // 
@@ -443,6 +448,7 @@
             this.pictureBox_search.Size = new System.Drawing.Size(56, 56);
             this.pictureBox_search.TabIndex = 17;
             this.pictureBox_search.TabStop = false;
+            this.pictureBox_search.Click += new System.EventHandler(this.pictureBox_search_Click);
             // 
             // pictureBox_update
             // 
@@ -464,6 +470,7 @@
             this.pictureBox_eraser.Size = new System.Drawing.Size(56, 56);
             this.pictureBox_eraser.TabIndex = 15;
             this.pictureBox_eraser.TabStop = false;
+            this.pictureBox_eraser.Click += new System.EventHandler(this.pictureBox_eraser_Click);
             // 
             // dataGridView1
             // 
