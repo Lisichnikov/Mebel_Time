@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Mebel_Time
 {
@@ -91,6 +92,9 @@ namespace Mebel_Time
 
             CreateColumns3();
             RefreshDataGrid3(dataGridView3);
+
+            openFileDialog1.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+            saveFileDialog1.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -228,17 +232,6 @@ namespace Mebel_Time
 
             if (dataGridView1.Rows[selectedRowIndex].Cells[0].Value.ToString() != string.Empty)
             {
-                /* 
-                 if(int.TryParse(textBox_int.Text, out int))
-                {
-                dataGridView1.Rows[selectedRow].SetValues(client_id, imya, familiya, otchestvo, year_of_birth, adress, phone_number);
-                dataGridView1.Rows[selectedRow].Cells[7].Value = RowState.Modified;
-                }
-                else
-                {
-                MessageBox.Show("Запись не создана!", "Позор!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                */
                 dataGridView1.Rows[selectedRow].SetValues(client_id, imya, familiya, otchestvo, year_of_birth, adress, phone_number);
                 dataGridView1.Rows[selectedRow].Cells[7].Value = RowState.Modified;
             }
@@ -652,6 +645,58 @@ namespace Mebel_Time
         private void pictureBox_erase3_Click(object sender, EventArgs e)
         {
             ClearFields3();
+        }
+
+        private void выдатьОтчетToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            double sum = 0;
+            for (int i = 0; i < dataGridView2.RowCount; i++)
+            {
+                sum += Convert.ToDouble(dataGridView2[5, i].Value);
+            }
+
+            int count = dataGridView2.RowCount;
+            string otchet = "ОТЧЕТ О ВЫРУЧКЕ" +
+                "\n" +
+                "\nВыручка: " + sum +
+                "\nКоличество активных заказов: " + count;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+            // получаем выбранный файл
+            string filename = saveFileDialog1.FileName;
+            // сохраняем текст в файл
+            System.IO.File.WriteAllText(filename, otchet);
+            MessageBox.Show("Файл сохранен");
+        }
+
+        private void показатьПрайслистToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string price_list = "ПРАЙС-ЛИСТ\n" +
+                "\n" +
+                "Диван-кровать D202:   25000р\n" +
+                "Диван-кровать D303:   30000р\n" +
+                "Диван D201:   20000р\n" +
+                "Диван угольный D20130:   27000р\n" +
+                "Стол круглый S101:   12000р\n" +
+                "Стол квадратный S1015:   14000р\n" +
+                "Стол большой S303:   20000р\n" +
+                "Стул обычный ST806060:   2000р\n" +
+                "Стул круглый ST406040:   1500р\n" +
+                "Стул треугольный ST606060:   1800р\n" +
+                "Кресло офисное K806060:   6000р\n" +
+                "Кресло K806050:   10000р\n" +
+                "Кровать KR202:   25000р\n" +
+                "Кровать KR201:   20000р\n" +
+                "Кровать круглая KR303:   35000р\n";
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+            // получаем выбранный файл
+            string filename = saveFileDialog1.FileName;
+            // сохраняем текст в файл
+            System.IO.File.WriteAllText(filename, price_list);
+            MessageBox.Show("Файл сохранен");
         }
     }
 }
