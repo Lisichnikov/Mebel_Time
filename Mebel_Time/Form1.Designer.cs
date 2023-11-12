@@ -30,8 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage_client = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button_save = new System.Windows.Forms.Button();
@@ -118,12 +116,13 @@
             this.pictureBox_erase3 = new System.Windows.Forms.PictureBox();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.label31 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выдатьОтчетToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.показатьПрайслистToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Give_Price_List = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControl1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.tabPage_client.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -148,6 +147,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_update3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_erase3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -160,26 +160,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1262, 645);
             this.tabControl1.TabIndex = 1;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1262, 28);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // файлToolStripMenuItem
-            // 
-            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.выдатьОтчетToolStripMenuItem,
-            this.показатьПрайслистToolStripMenuItem});
-            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
-            this.файлToolStripMenuItem.Text = "Функции";
             // 
             // tabPage_client
             // 
@@ -1297,19 +1277,39 @@
             this.label31.TabIndex = 29;
             this.label31.Text = "База доставки";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.файлToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1262, 30);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // файлToolStripMenuItem
+            // 
+            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.выдатьОтчетToolStripMenuItem,
+            this.Give_Price_List});
+            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(84, 26);
+            this.файлToolStripMenuItem.Text = "Функции";
+            // 
             // выдатьОтчетToolStripMenuItem
             // 
             this.выдатьОтчетToolStripMenuItem.Name = "выдатьОтчетToolStripMenuItem";
-            this.выдатьОтчетToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
+            this.выдатьОтчетToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.выдатьОтчетToolStripMenuItem.Text = "Выдать отчет";
             this.выдатьОтчетToolStripMenuItem.Click += new System.EventHandler(this.выдатьОтчетToolStripMenuItem_Click);
             // 
-            // показатьПрайслистToolStripMenuItem
+            // Give_Price_List
             // 
-            this.показатьПрайслистToolStripMenuItem.Name = "показатьПрайслистToolStripMenuItem";
-            this.показатьПрайслистToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
-            this.показатьПрайслистToolStripMenuItem.Text = "Показать прайс-лист";
-            this.показатьПрайслистToolStripMenuItem.Click += new System.EventHandler(this.показатьПрайслистToolStripMenuItem_Click);
+            this.Give_Price_List.Name = "Give_Price_List";
+            this.Give_Price_List.Size = new System.Drawing.Size(224, 26);
+            this.Give_Price_List.Text = "Выдать прайс-лист";
+            this.Give_Price_List.Click += new System.EventHandler(this.показатьПрайслистToolStripMenuItem_Click);
             // 
             // openFileDialog1
             // 
@@ -1329,8 +1329,6 @@
             this.Text = "Система учета заказов и их выполнения";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.tabPage_client.ResumeLayout(false);
             this.tabPage_client.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1364,6 +1362,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_update3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_erase3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1460,7 +1460,7 @@
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.ToolStripMenuItem выдатьОтчетToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem показатьПрайслистToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Give_Price_List;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
