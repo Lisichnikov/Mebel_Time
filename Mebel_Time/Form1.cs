@@ -11,7 +11,6 @@ using System.Data.SqlClient;
 
 namespace Mebel_Time
 {
-
     enum RowState
     {
         Existed,
@@ -33,6 +32,7 @@ namespace Mebel_Time
             StartPosition = FormStartPosition.CenterScreen;
         }
 
+        // клиентская база
         private void CreateColumns()
         {
             dataGridView1.Columns.Add("client_id", "ID");
@@ -43,6 +43,7 @@ namespace Mebel_Time
             dataGridView1.Columns.Add("adress", "Адрес");
             dataGridView1.Columns.Add("phone_number", "Номер телефона");
             dataGridView1.Columns.Add("IsNew", String.Empty);
+            dataGridView1.Columns[7].Visible = false;
         }
 
         private void ClearFields()
@@ -84,6 +85,12 @@ namespace Mebel_Time
         {
             CreateColumns();
             RefreshDataGrid(dataGridView1);
+
+            CreateColumns2();
+            RefreshDataGrid2(dataGridView2);
+
+            CreateColumns3();
+            RefreshDataGrid3(dataGridView3);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -248,9 +255,403 @@ namespace Mebel_Time
             ClearFields();
         }
 
-        private void pictureBox_search_Click(object sender, EventArgs e)
+        // база заказов
+        private void CreateColumns2()
         {
+            dataGridView2.Columns.Add("zakaz_id", "ID");
+            dataGridView2.Columns.Add("client_id", "ID клиента");
+            dataGridView2.Columns.Add("remaining_days", "Готовность заказа");
+            dataGridView2.Columns.Add("name_of", "Название");
+            dataGridView2.Columns.Add("type_of", "Тип");
+            dataGridView2.Columns.Add("price", "Цена");
+            dataGridView2.Columns.Add("material", "Материалы");
+            dataGridView2.Columns.Add("size", "Размеры");
+            dataGridView2.Columns.Add("IsNew", String.Empty);
+            dataGridView2.Columns[8].Visible = false;
+        }
 
+        private void ReadSingleRow2(DataGridView dgw, IDataRecord record)
+        {
+            dgw.Rows.Add(record.GetInt32(0), record.GetInt32(1), record.GetString(2), record.GetString(3), record.GetString(4), record.GetInt32(5), record.GetString(6), record.GetString(7), RowState.ModifiedNew);
+        }
+
+        private void RefreshDataGrid2(DataGridView dgw)
+        {
+            dgw.Rows.Clear();
+
+            string querryString = $"select * from mebel";
+
+            SqlCommand command = new SqlCommand(querryString, dataBase.getConnection());
+
+            dataBase.openConnection();
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                ReadSingleRow2(dgw, reader);
+            }
+            reader.Close();
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            selectedRow = e.RowIndex;
+
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridView2.Rows[selectedRow];
+
+                textBox_zakaz_id.Text = row.Cells[0].Value.ToString();
+                textBox_client_id.Text = row.Cells[1].Value.ToString();
+                textBox_name_of.Text = row.Cells[3].Value.ToString();
+                textBox_type_of.Text = row.Cells[4].Value.ToString();
+                textBox_price.Text = row.Cells[5].Value.ToString();
+                textBox_remaining_days.Text = row.Cells[2].Value.ToString();
+                textBox_material.Text = row.Cells[6].Value.ToString();
+                textBox_size.Text = row.Cells[7].Value.ToString();
+            }
+        }
+
+        private void pictureBox_update2_Click(object sender, EventArgs e)
+        {
+            RefreshDataGrid2(dataGridView2);
+        }
+
+        private void button_newNote2_Click(object sender, EventArgs e)
+        {
+            Add_Zakaz addzakazfrm = new Add_Zakaz();
+            addzakazfrm.Show();
+        }
+
+        private void Search2(DataGridView dgw)
+        {
+            dgw.Rows.Clear();
+            string searchString = $"select * from mebel where concat (zakaz_id, client_id, name_of, type_of, remaining_days, price, material, size) like '%" + textBox8.Text + "%'";
+
+            SqlCommand com = new SqlCommand(searchString, dataBase.getConnection());
+
+            dataBase.openConnection();
+
+            SqlDataReader read = com.ExecuteReader();
+
+            while (read.Read())
+            {
+                ReadSingleRow2(dgw, read);
+            }
+            read.Close();
+        }
+
+        private void textBox8_TextChanged(object sender, EventArgs e)
+        {
+            Search2(dataGridView2);
+        }
+
+        private void Update2()
+        {
+            dataBase.openConnection();
+
+            for (int index = 0; index < dataGridView2.Rows.Count; index++)
+            {
+                var rowState = (RowState)dataGridView2.Rows[index].Cells[8].Value;
+
+                if (rowState == RowState.Existed)
+                {
+                    continue;
+                }
+
+                if (rowState == RowState.Deleted)
+                {
+                    var id = Convert.ToInt32(dataGridView2.Rows[index].Cells[0].Value);
+                    var deleteQuerry = $"delete from mebel where zakaz_id = {id}";
+
+                    var command = new SqlCommand(deleteQuerry, dataBase.getConnection());
+                    command.ExecuteNonQuery();
+                }
+
+                if (rowState == RowState.Modified)
+                {
+                    var zakaz_id = dataGridView2.Rows[index].Cells[0].Value.ToString();
+                    var client_id = dataGridView2.Rows[index].Cells[1].Value.ToString();
+                    var name_of = dataGridView2.Rows[index].Cells[3].Value.ToString();
+                    var type_of = dataGridView2.Rows[index].Cells[4].Value.ToString();
+                    var price = dataGridView2.Rows[index].Cells[5].Value.ToString();
+                    var remaining_days = dataGridView2.Rows[index].Cells[2].Value.ToString();
+                    var material = dataGridView2.Rows[index].Cells[6].Value.ToString();
+                    var size = dataGridView2.Rows[index].Cells[7].Value.ToString();
+
+                    var changeQuerry = $"update mebel set client_id = '{client_id}', remaining_days = '{remaining_days}', name_of = '{name_of}', type_of = '{type_of}', price = '{price}', material = '{material}', size = '{size}' where zakaz_id = '{zakaz_id}'";
+
+                    var command = new SqlCommand(changeQuerry, dataBase.getConnection());
+                    command.ExecuteNonQuery();
+                }
+            }
+            dataBase.closeConnection();
+        }
+
+        private void deleteRow2()
+        {
+            int index = dataGridView2.CurrentCell.RowIndex;
+
+            dataGridView2.Rows[index].Visible = false;
+
+            if (dataGridView2.Rows[index].Cells[0].Value.ToString() == string.Empty)
+            {
+                dataGridView2.Rows[index].Cells[8].Value = RowState.Deleted;
+                return;
+            }
+            dataGridView2.Rows[index].Cells[8].Value = RowState.Deleted;
+        }
+
+        private void button_delete2_Click(object sender, EventArgs e)
+        {
+            deleteRow2();
+            ClearFields2();
+        }
+
+        private void button_save2_Click(object sender, EventArgs e)
+        {
+            Update2();
+        }
+
+        private void Change2()
+        {
+            var selectedRowIndex = dataGridView2.CurrentCell.RowIndex;
+
+            var zakaz_id = textBox_zakaz_id.Text;
+            int client_id;
+            var name_of = textBox_name_of.Text;
+            var type_of = textBox_type_of.Text;
+            var remaining_days = textBox_remaining_days.Text;
+            int price;
+            var material = textBox_material.Text;
+            var size = textBox_size.Text;
+
+            if (dataGridView2.Rows[selectedRowIndex].Cells[0].Value.ToString() != string.Empty)
+            {
+                if (int.TryParse(textBox_client_id.Text, out client_id) && int.TryParse(textBox_price.Text, out price))
+                {
+                    dataGridView2.Rows[selectedRow].SetValues(zakaz_id, client_id, remaining_days, name_of, type_of, price, material, size);
+                    dataGridView2.Rows[selectedRow].Cells[8].Value = RowState.Modified;
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось изменить запись!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        private void button_edit2_Click(object sender, EventArgs e)
+        {
+            Change2();
+            ClearFields2();
+        }
+
+        private void ClearFields2()
+        {
+            textBox_zakaz_id.Text = "";
+            textBox_client_id.Text = "";
+            textBox_remaining_days.Text = "";
+            textBox_name_of.Text = "";
+            textBox_type_of.Text = "";
+            textBox_price.Text = "";
+            textBox_material.Text = "";
+            textBox_size.Text = "";
+        }
+
+        private void pictureBox_eraser2_Click(object sender, EventArgs e)
+        {
+            ClearFields2();
+        }
+
+
+        // база доставки
+        private void CreateColumns3()
+        {
+            dataGridView3.Columns.Add("zakaz_id", "ID");
+            dataGridView3.Columns.Add("client_id", "ID клиента");
+            dataGridView3.Columns.Add("delivery_cost", "Стоимость доставки");
+            dataGridView3.Columns.Add("remaining_time", "Время ожидания");
+            dataGridView3.Columns.Add("IsNew", String.Empty);
+            dataGridView3.Columns[4].Visible = false;
+        }
+
+        private void ReadSingleRow3(DataGridView dgw, IDataRecord record)
+        {
+            dgw.Rows.Add(record.GetInt32(0), record.GetInt32(1), record.GetInt32(2), record.GetString(3), RowState.ModifiedNew);
+        }
+
+        private void RefreshDataGrid3(DataGridView dgw)
+        {
+            dgw.Rows.Clear();
+
+            string querryString = $"select * from delivery";
+
+            SqlCommand command = new SqlCommand(querryString, dataBase.getConnection());
+
+            dataBase.openConnection();
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                ReadSingleRow3(dgw, reader);
+            }
+            reader.Close();
+        }
+
+        private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            selectedRow = e.RowIndex;
+
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridView3.Rows[selectedRow];
+
+                textBox_zakaz_id2.Text = row.Cells[0].Value.ToString();
+                textBox_client_id2.Text = row.Cells[1].Value.ToString();
+                textBox_delivery_cost.Text = row.Cells[2].Value.ToString();
+                textBox_remaining_time.Text = row.Cells[3].Value.ToString();
+            }
+        }
+
+        private void pictureBox_update3_Click(object sender, EventArgs e)
+        {
+            RefreshDataGrid3(dataGridView3);
+        }
+
+        private void button_newNote3_Click(object sender, EventArgs e)
+        {
+            Add_Delivery adddeliveryfrm = new Add_Delivery();
+            adddeliveryfrm.Show();
+        }
+
+        private void Search3(DataGridView dgw)
+        {
+            dgw.Rows.Clear();
+            string searchString = $"select * from delivery where concat (zakaz_id, client_id, delivery_cost, remaining_time) like '%" + textBox10.Text + "%'";
+
+            SqlCommand com = new SqlCommand(searchString, dataBase.getConnection());
+
+            dataBase.openConnection();
+
+            SqlDataReader read = com.ExecuteReader();
+
+            while (read.Read())
+            {
+                ReadSingleRow3(dgw, read);
+            }
+            read.Close();
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+            Search3(dataGridView3);
+        }
+
+        private void Update3()
+        {
+            dataBase.openConnection();
+
+            for (int index = 0; index < dataGridView3.Rows.Count; index++)
+            {
+                var rowState = (RowState)dataGridView3.Rows[index].Cells[4].Value;
+
+                if (rowState == RowState.Existed)
+                {
+                    continue;
+                }
+
+                if (rowState == RowState.Deleted)
+                {
+                    var id = Convert.ToInt32(dataGridView3.Rows[index].Cells[0].Value);
+                    var deleteQuerry = $"delete from delivery where zakaz_id = {id}";
+
+                    var command = new SqlCommand(deleteQuerry, dataBase.getConnection());
+                    command.ExecuteNonQuery();
+                }
+
+                if (rowState == RowState.Modified)
+                {
+                    var zakaz_id = dataGridView3.Rows[index].Cells[0].Value.ToString();
+                    var client_id = dataGridView3.Rows[index].Cells[1].Value.ToString();
+                    var delivery_cost = dataGridView3.Rows[index].Cells[2].Value.ToString();
+                    var remaining_time = dataGridView3.Rows[index].Cells[3].Value.ToString();
+
+                    var changeQuerry = $"update delivery set client_id = '{client_id}', delivery_cost = '{delivery_cost}', remaining_time = '{remaining_time}' where zakaz_id = '{zakaz_id}'";
+
+                    var command = new SqlCommand(changeQuerry, dataBase.getConnection());
+                    command.ExecuteNonQuery();
+                }
+            }
+            dataBase.closeConnection();
+        }
+
+        private void deleteRow3()
+        {
+            int index = dataGridView3.CurrentCell.RowIndex;
+
+            dataGridView3.Rows[index].Visible = false;
+
+            if (dataGridView3.Rows[index].Cells[0].Value.ToString() == string.Empty)
+            {
+                dataGridView3.Rows[index].Cells[4].Value = RowState.Deleted;
+                return;
+            }
+            dataGridView3.Rows[index].Cells[4].Value = RowState.Deleted;
+        }
+
+        private void button_delete3_Click(object sender, EventArgs e)
+        {
+            deleteRow3();
+            ClearFields3();
+        }
+
+        private void button_save3_Click(object sender, EventArgs e)
+        {
+            Update3();
+        }
+
+        private void Change3()
+        {
+            var selectedRowIndex = dataGridView3.CurrentCell.RowIndex;
+
+            var zakaz_id = textBox_zakaz_id2.Text;
+            int client_id;
+            int delivery_cost;
+            var remaining_time = textBox_remaining_time.Text;
+
+            if (dataGridView3.Rows[selectedRowIndex].Cells[0].Value.ToString() != string.Empty)
+            {
+                if (int.TryParse(textBox_client_id2.Text, out client_id) && int.TryParse(textBox_delivery_cost.Text, out delivery_cost))
+                {
+                    dataGridView3.Rows[selectedRow].SetValues(zakaz_id, client_id, delivery_cost, remaining_time);
+                    dataGridView3.Rows[selectedRow].Cells[4].Value = RowState.Modified;
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось изменить запись!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        private void button_edit3_Click(object sender, EventArgs e)
+        {
+            Change3();
+            ClearFields3();
+        }
+
+        private void ClearFields3()
+        {
+            textBox_zakaz_id2.Text = "";
+            textBox_client_id2.Text = "";
+            textBox_delivery_cost.Text = "";
+            textBox_remaining_time.Text = "";
+        }
+
+        private void pictureBox_erase3_Click(object sender, EventArgs e)
+        {
+            ClearFields3();
         }
     }
 }

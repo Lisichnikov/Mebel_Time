@@ -130,14 +130,17 @@
   <data name="квадрат виден" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\квадрат виден.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="мелка кнопка note" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\мелка кнопка note.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="квадрат не виден1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\квадрат не виден1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="мелка кнопка копия" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\мелка кнопка копия.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="мелка кнопка update" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\мелка кнопка update.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="мелка кнопка search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\мелка кнопка search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="квадрат виден1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\квадрат виден1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,7 +151,10 @@
   <data name="квадрат не виден" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\квадрат не виден.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="мелка кнопка search" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\мелка кнопка search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="мелка кнопка update" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\мелка кнопка update.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="мелка кнопка note1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\мелка кнопка note1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

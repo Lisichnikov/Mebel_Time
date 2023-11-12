@@ -46,11 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Add_Delivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_Delivery.Designer.cs">
+      <DependentUpon>Add_Delivery.cs</DependentUpon>
+    </Compile>
     <Compile Include="Add_Form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Add_Form.Designer.cs">
       <DependentUpon>Add_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add_Zakaz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_Zakaz.Designer.cs">
+      <DependentUpon>Add_Zakaz.cs</DependentUpon>
     </Compile>
     <Compile Include="DataBase.cs" />
     <Compile Include="Form1.cs">
@@ -73,8 +85,14 @@
     <Compile Include="signup.Designer.cs">
       <DependentUpon>signup.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Add_Delivery.resx">
+      <DependentUpon>Add_Delivery.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Add_Form.resx">
       <DependentUpon>Add_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_Zakaz.resx">
+      <DependentUpon>Add_Zakaz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -140,6 +158,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\мелка кнопка search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\мелка кнопка note.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\мелка кнопка note1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -31,18 +31,6 @@ namespace Mebel_Time
             var adress = textBox_adress.Text;
             var phone_number = textBox_phone_number.Text;
 
-            /* 
-            int int;
-            if(int.TryParse(textBox_int.Text, out int))
-            {
-            var addQuery = $"insert into client (imya, familiya, otchestvo, year_of_birth, adress, phone_number) values ('{imya}', '{familiya}', '{otchestvo}', '{year_of_birth}', '{adress}', '{phone_number}')";
-            }
-            else
-            {
-            MessageBox.Show("Запись не создана!", "Позор!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            */
-
             var addQuery = $"insert into client (imya, familiya, otchestvo, year_of_birth, adress, phone_number) values ('{imya}', '{familiya}', '{otchestvo}', '{year_of_birth}', '{adress}', '{phone_number}')";
 
             var command = new SqlCommand(addQuery, dataBase.getConnection());
@@ -51,6 +39,11 @@ namespace Mebel_Time
             MessageBox.Show("Запись успешно создана!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             dataBase.closeConnection();
+        }
+
+        private void Add_Form_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

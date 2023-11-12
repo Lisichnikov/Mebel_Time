@@ -143,6 +143,26 @@ namespace Mebel_Time.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap мелка_кнопка_note {
+            get {
+                object obj = ResourceManager.GetObject("мелка кнопка note", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap мелка_кнопка_note1 {
+            get {
+                object obj = ResourceManager.GetObject("мелка кнопка note1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap мелка_кнопка_search {
             get {
                 object obj = ResourceManager.GetObject("мелка кнопка search", resourceCulture);
